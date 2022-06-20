@@ -25,6 +25,8 @@ public class CatalogueRestController {
     public byte[] getPhoto(@PathVariable("id") Long id) throws Exception{
         Product p=productRepository.findById(id).get();
             //va se rendre au apth "C:\Users\pekit\Desktop\PROJECT-ALL\1PROJECT-JEE-intellij\frontEnd\ecommerce-v1-Angular\nomPhoto"
+        System.out.println(p.getPhotoName()); //return "unknown.png" (if any image is defined)
+
         return Files.readAllBytes(Paths.get(System.getProperty("user.home")+"/ecommerce-v1/products/"+ p.getPhotoName()));
 
 
