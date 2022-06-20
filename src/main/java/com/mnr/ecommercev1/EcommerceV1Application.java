@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 
 import java.util.Random;
 
@@ -21,7 +22,7 @@ public class EcommerceV1Application implements CommandLineRunner {
     private CategoryRepository categoriaRepository;
 
     @Autowired
-    //private RepositoryRestConfiguration repositoryRestConfiguration;
+    private RepositoryRestConfiguration repositoryRestConfiguration;
 
     public static void main(String[] args) {
         SpringApplication.run(EcommerceV1Application.class, args);
@@ -30,7 +31,8 @@ public class EcommerceV1Application implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         //qd on envoi un fichier de format json, tu expose son id
-        //repositoryRestConfiguration.exposeIdsFor(Product.class,Category.class);
+        repositoryRestConfiguration.exposeIdsFor(Product.class,Category.class);
+
         categoriaRepository.save(new Category(null,"computers",null,null,null));
         categoriaRepository.save(new Category(null,"Printers",null,null,null));
         categoriaRepository.save(new Category(null,"Smart Phone",null,null,null));
