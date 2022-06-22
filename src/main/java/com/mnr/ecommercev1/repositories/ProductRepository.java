@@ -19,9 +19,18 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     public List<Product> findBySelectedIsTrue();
 
     @RestResource(path="/productsByKeyword")
-     //pour chercher les données;on tapent: http://localhost:8080/products/search/selectedproducts
+     //pour chercher les données;on tapent: http://localhost:8080/products/search/productsByKeyword
       //@Query("select p from Product p where p.name like:x")
        //public List<Product>chercher(@Param("x") String mc);
      //ou procede with spring data like that
      public List<Product> findByNameContains(@Param("mc") String mc);
+
+    @RestResource(path="/promoProducts")
+    //http://localhost:8080/products/search/productsByKeyword/promoProducts
+    public List<Product> findByPromotionIsTrue();
+
+    @RestResource(path="/dispoProducts")
+    //http://localhost:8080/products/search/productsByKeyword/dispoProducts
+    public List<Product> findByAvailableIsTrue();
+
 }
